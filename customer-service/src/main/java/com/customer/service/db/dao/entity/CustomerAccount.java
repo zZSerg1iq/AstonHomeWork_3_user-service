@@ -14,6 +14,7 @@ public class CustomerAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // зачем sequence нужен был? Под него надо ручками sequence делать
     private Long id; // неиспользуй в качестве ключей примитивы. null имеет свою роль в этом
 
+    @Enumerated(EnumType.STRING)
     private AccountType accountType;
     private boolean isActive;
 
