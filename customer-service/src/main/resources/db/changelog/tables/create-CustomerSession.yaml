@@ -4,7 +4,7 @@ databaseChangeLog:
       author: Sergey
       changes:
         - createTable:
-            tableName: CustomerSession
+            tableName: customer_session
             columns:
               - column:
                   name: id
@@ -13,11 +13,12 @@ databaseChangeLog:
                   constraints:
                     primaryKey: true
               - column:
-                  name: customerId
+                  name: customer_id # snake_case
                   type: BIGINT
                   constraints:
                     foreignKeyName: FK_CustomerSession_Customer
-                    references: Customer(userId)
+                    referencedTableName: customer
+                    referencedColumnNames: user_id
               - column:
-                  name: authId
+                  name: auth_id # snake_case
                   type: VARCHAR(255)

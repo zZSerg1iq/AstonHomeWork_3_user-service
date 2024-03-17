@@ -11,14 +11,14 @@ import java.util.Objects;
 public class CustomerAccount {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // зачем sequence нужен был? Под него надо ручками sequence делать
+    private Long id; // неиспользуй в качестве ключей примитивы. null имеет свою роль в этом
 
     private AccountType accountType;
     private boolean isActive;
 
     @OneToOne
-    @JoinColumn
+    @PrimaryKeyJoinColumn // joinColumn по primary keys
     private Customer customerId;
 
     @Override

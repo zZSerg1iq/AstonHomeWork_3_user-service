@@ -11,10 +11,10 @@ public class CustomerSession {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @OneToOne
-    @JoinColumn
+    @PrimaryKeyJoinColumn
     private Customer customerId;
 
     private String authId;

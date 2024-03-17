@@ -4,10 +4,10 @@ databaseChangeLog:
       author: Sergey
       changes:
         - createTable:
-            tableName: Customer
+            tableName: customer # snake_case
             columns:
               - column:
-                  name: userId
+                  name: user_id # snake_case
                   type: BIGINT
                   autoIncrement: true
                   constraints:
@@ -19,5 +19,5 @@ databaseChangeLog:
                   name: password
                   type: VARCHAR(255)
               - column:
-                  name: mobilePhone
+                  name: mobile_phone # snake_case
                   type: VARCHAR(255)

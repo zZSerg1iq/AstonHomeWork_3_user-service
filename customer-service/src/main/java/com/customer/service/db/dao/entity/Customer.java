@@ -10,7 +10,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userId;
+    private Long userId; // неиспользуй в качестве ключей примитивы. null имеет свою роль в этом
 
     private String email;
     private String password;
