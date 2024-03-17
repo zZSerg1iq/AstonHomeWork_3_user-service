@@ -10,15 +10,17 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId; // неиспользуй в качестве ключей примитивы. null имеет свою роль в этом
+    private Long userId;
 
     private String email;
     private String password;
     private String mobilePhone;
 
-    @OneToOne(mappedBy = "customerId", fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "customerId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private CustomerAccount userCustomerAccount;
 
     @OneToOne(mappedBy = "customerId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private CustomerSession customerSession;
+
+    
 }
