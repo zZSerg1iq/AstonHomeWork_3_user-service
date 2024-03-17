@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: session-table-creation
+      author: Sergey
+      changes:
+        - createTable:
+            tableName: CustomerSession
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: customerId
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: FK_CustomerSession_Customer
+                    references: Customer(userId)
+              - column:
+                  name: authId
+                  type: VARCHAR(255)

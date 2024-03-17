@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - context: dev
+  - logicalFilePath: db/changelog/db.changelog-master.yaml
+#    create tables
+  - include:
+      file: db/changelog/tables/create-customer.yaml
+  - include:
+      file: db/changelog/tables/create-account.yaml
+  - include:
+      file: db/changelog/tables/create-CustomerSession.yaml
+#    set test data into tables
+#  - include:
+#      file: db/changelog/testdata/add-test-data-for-user.yaml
+#  - include:
+#      file: db/changelog/testdata/add-test-data-for-account.yaml
+#  - include:
+#      file: db/changelog/testdata/add-test-data-for-userSession.yaml
+#    create tables reference keys
+#  - include:
+#      file: db/changelog/tables/create-references.yaml
