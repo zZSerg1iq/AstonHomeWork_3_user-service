@@ -5,10 +5,13 @@ import com.example.astonhw3.dto.CustomerDto;
 import com.example.astonhw3.dto.DebetAccountDto;
 import com.example.astonhw3.dto.RequestDto;
 import com.example.astonhw3.dto.service.CustomerService;
-import com.example.astonhw3.kafka.KafkaConsumer;
 import com.example.astonhw3.kafka.KafkaProducer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/users")
+@Tag(name = "Основной и единственный контроллер, который принимает сообщения от UI пользователя")
 public class UserController {
 
     private final DebetService debetService;
@@ -34,10 +38,14 @@ public class UserController {
     }
 
     @PostMapping
+    @Operation(summary = "Verify", description = "Метод принимает данные пользователя, " +
+            "проверяет по базе наличие пользователя и его пароль, " +
+            "после чего отправляет REST запрос другому сервису")
+
+    @ApiResponse(description = "Возвращает ответ от микросервиса, а так же коды 404 в случае если юзер не найден или 400 в случае, если пароль не верен")
     public ResponseEntity<String> userRequest(@RequestBody RequestDto requestDto) {
         CustomerDto customerDto = customerService.getUserData(requestDto);
         System.out.println(customerDto);
-
 
         DebetAccountDto debetAccountDto = DebetAccountDto
                 .builder()
@@ -47,17 +55,14 @@ public class UserController {
 
       Gson gson = new GsonBuilder().create();
 
-/*
+
         if (requestDto.getOperationType().equals("create")) {
             debetService.createDebetAccount(debetAccountDto);
-            kafkaProducer.sendMessage("topic_ASTON", debetAccountDto);
+      //      kafkaProducer.sendMessage("topic_ASTON", gson.toJson(debetAccountDto));
         } else {
             debetService.depositToDebetAccount(debetAccountDto);
-            kafkaProducer.sendMessage("topic_ASTON", debetAccountDto);
-        }*/
-
-
-        kafkaProducer.sendMessage("topic_ASTON", gson.toJson(debetAccountDto));
+      //      kafkaProducer.sendMessage("topic_ASTON", gson.toJson(debetAccountDto));
+        }
 
         return ResponseEntity.ok("Ok");
     }

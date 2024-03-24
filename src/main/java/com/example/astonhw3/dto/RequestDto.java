@@ -1,8 +1,8 @@
 package com.example.astonhw3.dto;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 @Data
@@ -10,6 +10,12 @@ public class RequestDto {
 
     @Min(1)
     private final Long customerId;
+
+    @NotBlank
+    private final String password;
+
+    @Email
+    private final String email;
 
     @NotBlank
     private String operationType;

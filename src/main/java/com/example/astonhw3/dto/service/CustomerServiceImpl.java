@@ -2,8 +2,8 @@ package com.example.astonhw3.dto.service;
 
 import com.example.astonhw3.dao.entity.Customer;
 import com.example.astonhw3.dao.repository.CustomerRepository;
-import com.example.astonhw3.dto.RequestDto;
 import com.example.astonhw3.dto.CustomerDto;
+import com.example.astonhw3.dto.RequestDto;
 import com.example.astonhw3.exception.CustomerNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -20,21 +20,24 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDto getUserData(RequestDto requestDto) {
+
         Optional<Customer> temp = repository.findById(requestDto.getCustomerId());
-        if (temp.isEmpty()){
+        if (temp.isEmpty()) {
             throw new CustomerNotFoundException();
         }
         Customer customer = temp.get();
 
-        CustomerDto customerDto = CustomerDto
+        if (!customer.getEmail().equals(requestDto.getEmail()) || !customer.getPassword().equals(requestDto.getPassword())){
+            throw new IncorrectValidationData();
+        }
+
+        return CustomerDto
                 .builder()
                 .userId(customer.getUserId())
                 .email(customer.getEmail())
                 .mobilePhone(customer.getMobilePhone())
                 .password(customer.getPassword())
                 .build();
-
-        return customerDto;
     }
 
 }
