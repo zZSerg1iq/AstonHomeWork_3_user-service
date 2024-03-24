@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: customer-table-creation
+      author: Sergey
+      changes:
+        - createTable:
+            tableName: customer
+            columns:
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+              - column:
+                  name: mobile_phone
+                  type: VARCHAR(255)

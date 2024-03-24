@@ -1,0 +1,11 @@
+user_id,email,password,mobile_phone
+1,johndoe@example.com,password123,1234567890
+2,janesmith@example.com,letmein,0987654321
+3,mikebrown@example.com,securepassword,1357924680
+4,sarajones@example.com,sarapass,9876543210
+5,davidlee@example.com,david123,2468013579
+6,karenwhite@example.com,password456,3456789012
+7,kevinblack@example.com,kevinpass,6543210987
+8,amandasmith@example.com,amanda123,7890123456
+9,robertgreen@example.com,greenpass,2109876543
+10,lisawilliams@example.com,lisa456,4321098765

@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - context: dev
+  - logicalFilePath: db/changelog/db.changelog-master.yaml
+#    create tables
+  - include:
+      file: db/changelog/create-customer.yaml
+#    set test data into tables
+  - include:
+      file: db/changelog/add-test-data-for-user.yaml

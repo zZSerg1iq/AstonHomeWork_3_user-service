@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: customer-table-add-data
+      author: Sergey
+      changes:
+        - loadData:
+            columns:
+              - column:
+                  header: email
+                  name: email
+              - column:
+                  header: password
+                  name: password
+              - column:
+                  header: mobile_phone
+                  name: mobile_phone
+            tableName: customer
+            encoding: UTF-8
+            separator: ','
+            quotchar: '"'
+            file: db/changelog/customer.csv
